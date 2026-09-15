@@ -3,1739 +3,2133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shakti Shield — Interactive Prototype</title>
+<title>Shakti Shield</title>
 
 <style>
-* {
-  box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
-body {
-  margin: 0;
-  font-family: Inter, Arial, sans-serif;
-  background: #eef1f5;
-  color: #172033;
+body{
+    background:#f4f6f8;
+    color:#172033;
 }
 
-button {
-  font: inherit;
-  cursor: pointer;
-  border: 0;
+/* ================= NAVBAR ================= */
+
+.navbar{
+    height:70px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    border-bottom:1px solid #e5e7eb;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-.app {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
+.logo{
+    font-size:23px;
+    font-weight:bold;
 }
 
-.phone {
-  width: 390px;
-  max-width: 100%;
-  height: 820px;
-  background: #f8fafc;
-  border: 8px solid #111827;
-  border-radius: 42px;
-  overflow: hidden;
-  box-shadow: 0 24px 70px #0002;
-  position: relative;
+.logo span{
+    color:#d7193f;
 }
 
-.status {
-  height: 30px;
-  background: #111827;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 18px;
-  font-size: 11px;
+.navlinks{
+    display:flex;
+    gap:28px;
 }
 
-.screen {
-  height: calc(100% - 30px);
-  overflow: auto;
-  padding-bottom: 28px;
+.navlinks button{
+    border:none;
+    background:none;
+    cursor:pointer;
+    color:#475467;
+    font-size:14px;
 }
 
-.top {
-  padding: 22px 22px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.navlinks button:hover{
+    color:#d7193f;
 }
 
-.logo {
-  font-weight: 800;
-  font-size: 21px;
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
 }
 
-.logo span {
-  color: #d7193f;
+.status-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#18a56b;
 }
 
-.avatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #e7ebf2;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
+/* ================= PAGES ================= */
+
+.page{
+    display:none;
+    min-height:calc(100vh - 70px);
 }
 
-.card {
-  margin: 10px 18px;
-  padding: 18px;
-  border-radius: 22px;
-  background: white;
-  box-shadow: 0 5px 18px #17203310;
+.page.active{
+    display:block;
 }
 
-.welcome {
-  font-size: 14px;
-  color: #667085;
-  margin-top: 4px;
+/* ================= HOME ================= */
+
+.home{
+    max-width:1100px;
+    margin:auto;
+    padding:70px 30px;
 }
 
-.location {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-size: 13px;
-  color: #667085;
+.hero{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
 }
 
-.dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #22a06b;
+.hero h1{
+    font-size:55px;
+    line-height:1.05;
+    margin-bottom:20px;
 }
 
-.sos-wrap {
-  text-align: center;
-  padding: 20px 0 8px;
+.hero h1 span{
+    color:#d7193f;
 }
 
-.sos {
-  width: 190px;
-  height: 190px;
-  border-radius: 50%;
-  background: #d7193f;
-  color: white;
-  font-size: 28px;
-  font-weight: 900;
-  box-shadow: 0 14px 35px #d7193f55;
-  border: 12px solid #f7c9d3;
+.hero p{
+    color:#667085;
+    font-size:17px;
+    line-height:1.7;
+    max-width:550px;
 }
 
-.sos small {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  margin-top: 6px;
-  opacity: .9;
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    margin-top:30px;
 }
 
-.hint {
-  text-align: center;
-  color: #667085;
-  font-size: 12px;
-  margin: 8px 30px 18px;
+.btn{
+    padding:14px 22px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin: 0 18px;
+.btn-primary{
+    background:#172033;
+    color:white;
 }
 
-.mini {
-  background: white;
-  border-radius: 18px;
-  padding: 15px;
-  box-shadow: 0 5px 18px #17203310;
+.btn-danger{
+    background:#d7193f;
+    color:white;
 }
 
-.mini b {
-  display: block;
-  margin-top: 7px;
-  font-size: 14px;
+.btn-light{
+    background:#e9edf2;
+    color:#172033;
 }
 
-.mini span {
-  font-size: 12px;
-  color: #667085;
+.btn-green{
+    background:#16865b;
+    color:white;
 }
 
-.section-title {
-  font-weight: 800;
-  font-size: 15px;
-  margin: 22px 18px 8px;
+/* ================= SAFETY CARD ================= */
+
+.safety-card{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    box-shadow:0 15px 40px #17203315;
+    text-align:center;
 }
 
-.contact {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.safety-card h2{
+    margin-bottom:20px;
 }
 
-.contact b {
-  font-size: 14px;
+.sos-button{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    border:15px solid #f8ccd6;
+    background:#d7193f;
+    color:white;
+    font-size:32px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 15px 35px #d7193f55;
+    transition:.2s;
 }
 
-.contact span {
-  font-size: 12px;
-  color: #667085;
+.sos-button:hover{
+    transform:scale(1.04);
 }
 
-.primary {
-  width: 100%;
-  padding: 14px;
-  border-radius: 14px;
-  background: #172033;
-  color: #fff;
-  font-weight: 700;
-  margin-top: 12px;
+.sos-button small{
+    display:block;
+    font-size:12px;
+    margin-top:8px;
 }
 
-.secondary {
-  width: 100%;
-  padding: 13px;
-  border-radius: 14px;
-  background: #eef1f5;
-  color: #172033;
-  font-weight: 700;
-  margin-top: 9px;
+/* ================= FEATURES ================= */
+
+.features{
+    max-width:1100px;
+    margin:50px auto;
+    padding:30px;
 }
 
-.back {
-  background: transparent;
-  font-size: 20px;
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
 }
 
-.screen-title {
-  font-weight: 800;
-  font-size: 20px;
-  flex: 1;
-  text-align: center;
-  margin-right: 25px;
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
 }
 
-.count {
-  text-align: center;
-  padding: 20px;
+.feature{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 5px 20px #17203310;
 }
 
-.count-num {
-  font-size: 70px;
-  font-weight: 900;
-  color: #d7193f;
+.feature-icon{
+    font-size:28px;
+    margin-bottom:12px;
 }
 
-.warning {
-  font-size: 14px;
-  color: #667085;
-  line-height: 1.5;
+.feature h3{
+    margin-bottom:8px;
 }
 
-.statusbox {
-  display: flex;
-  justify-content: space-between;
-  padding: 13px 0;
-  border-bottom: 1px solid #edf0f4;
-  font-size: 13px;
+.feature p{
+    color:#667085;
+    font-size:14px;
+    line-height:1.6;
 }
 
-.ok {
-  color: #16835b;
-  font-weight: 700;
+/* ================= APP HEADER ================= */
+
+.app-container{
+    max-width:900px;
+    margin:auto;
+    padding:35px 25px;
 }
 
-.map {
-  height: 180px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #dfe9df, #edf2ea);
-  position: relative;
-  overflow: hidden;
-  margin-top: 12px;
+.app-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
 }
 
-.road {
-  position: absolute;
-  height: 7px;
-  background: #fff;
-  transform: rotate(25deg);
-  width: 140%;
-  top: 75px;
+.card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:20px;
+    box-shadow:0 5px 20px #17203310;
 }
 
-.pin {
-  position: absolute;
-  left: 50%;
-  top: 45%;
-  font-size: 34px;
-  transform: translate(-50%, -50%);
+.card h2{
+    margin-bottom:15px;
 }
 
-.success {
-  margin: 28px 18px;
-  text-align: center;
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
 }
 
-.check {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: #dff4ea;
-  color: #16835b;
-  display: grid;
-  place-items: center;
-  font-size: 44px;
-  margin: auto;
+.info-box{
+    background:#f7f8fa;
+    padding:18px;
+    border-radius:15px;
 }
 
-.success h2 {
-  margin: 16px 0 6px;
+.info-box span{
+    display:block;
+    color:#667085;
+    font-size:12px;
+    margin-top:5px;
 }
 
-.dash {
-  background: #f4f6f9;
-  min-height: 100%;
+/* ================= SOS PAGE ================= */
+
+.sos-page{
+    max-width:650px;
+    margin:auto;
+    padding:50px 25px;
+    text-align:center;
 }
 
-.dash .top {
-  background: white;
+.countdown{
+    font-size:100px;
+    font-weight:bold;
+    color:#d7193f;
+    margin:30px;
 }
 
-.alert {
-  margin: 14px 18px;
-  background: white;
-  border-radius: 20px;
-  padding: 16px;
-  border-left: 5px solid #d7193f;
-  box-shadow: 0 5px 18px #17203310;
+.progress{
+    width:100%;
+    height:8px;
+    background:#e5e7eb;
+    border-radius:10px;
+    overflow:hidden;
 }
 
-.alert-head {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 800;
+.progress-bar{
+    height:100%;
+    background:#d7193f;
+    width:100%;
+    transition:1s linear;
 }
 
-.tag {
-  font-size: 10px;
-  background: #fde3e9;
-  color: #b41135;
-  padding: 5px 8px;
-  border-radius: 20px;
+/* ================= LOCATION ================= */
+
+.map{
+    height:300px;
+    background:
+        linear-gradient(35deg,transparent 48%,white 49%,white 52%,transparent 53%),
+        linear-gradient(120deg,transparent 48%,white 49%,white 52%,transparent 53%),
+        #dce8dc;
+    border-radius:18px;
+    position:relative;
+    margin-top:20px;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 14px;
-  font-size: 13px;
+.map-pin{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    font-size:45px;
 }
 
-.response {
-  background: #16835b;
-  color: white;
-  width: 100%;
-  padding: 14px;
-  border-radius: 13px;
-  font-weight: 800;
-  margin-top: 15px;
+/* ================= DASHBOARD ================= */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:230px 1fr;
+    min-height:calc(100vh - 70px);
 }
 
-.safe {
-  background: #e8eef5;
-  color: #172033;
-  width: 100%;
-  padding: 13px;
-  border-radius: 13px;
-  font-weight: 700;
-  margin-top: 8px;
+.sidebar{
+    background:#172033;
+    color:white;
+    padding:30px 20px;
 }
 
-.toast {
-  position: absolute;
-  left: 18px;
-  right: 18px;
-  bottom: 18px;
-  background: #172033;
-  color: white;
-  padding: 13px 16px;
-  border-radius: 14px;
-  text-align: center;
-  font-size: 13px;
-  display: none;
-  z-index: 10;
+.sidebar h2{
+    margin-bottom:30px;
 }
 
-.nav {
-  position: sticky;
-  bottom: 0;
-  background: white;
-  border-top: 1px solid #e7eaf0;
-  padding: 11px 18px;
-  display: flex;
-  justify-content: space-around;
-  font-size: 11px;
-  color: #667085;
+.sidebar button{
+    width:100%;
+    padding:13px;
+    margin-bottom:8px;
+    background:transparent;
+    border:none;
+    color:#d0d5dd;
+    text-align:left;
+    cursor:pointer;
+    border-radius:8px;
 }
 
-.nav b {
-  color: #172033;
+.sidebar button:hover{
+    background:#273247;
+    color:white;
 }
 
-.badge {
-  display: inline-block;
-  padding: 5px 9px;
-  border-radius: 20px;
-  background: #e8f6ef;
-  color: #16835b;
-  font-size: 11px;
-  font-weight: 700;
+.dashboard-main{
+    padding:35px;
 }
+
+.alert-card{
+    background:white;
+    border-left:6px solid #d7193f;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px #17203310;
+}
+
+.alert-header{
+    display:flex;
+    justify-content:space-between;
+}
+
+.active-badge{
+    background:#fde2e8;
+    color:#b31236;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+/* ================= CONTACTS ================= */
+
+.contact{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+}
+
+.contact:last-child{
+    border-bottom:none;
+}
+
+.contact small{
+    display:block;
+    color:#667085;
+    margin-top:4px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #d5d9df;
+    border-radius:10px;
+    margin:6px 0;
+}
+
+/* ================= SETTINGS ================= */
+
+.setting{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+    border-bottom:1px solid #eee;
+}
+
+.switch{
+    width:45px;
+    height:24px;
+    background:#18a56b;
+    border-radius:20px;
+    position:relative;
+}
+
+.switch:after{
+    content:"";
+    width:18px;
+    height:18px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+    right:3px;
+    top:3px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#172033;
+    color:white;
+    padding:14px 22px;
+    border-radius:10px;
+    display:none;
+    z-index:500;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:800px){
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .dashboard{
+        grid-template-columns:1fr;
+    }
+
+    .sidebar{
+        display:none;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .navlinks{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div class="app">
 
-  <div class="phone">
+<!-- ================= NAVBAR ================= -->
 
-    <div class="status">
-      <span>9:41</span>
-      <span>● ● ▮ 100%</span>
+<nav class="navbar">
+
+    <div class="logo">
+        Shakti <span>Shield</span>
     </div>
 
-    <div id="root"></div>
+    <div class="navlinks">
 
-    <div id="toast" class="toast"></div>
+        <button onclick="showPage('home')">
+            Home
+        </button>
 
-  </div>
+        <button onclick="showPage('safety')">
+            Safety
+        </button>
+
+        <button onclick="showPage('contacts')">
+            Contacts
+        </button>
+
+        <button onclick="showPage('guardian')">
+            Guardian
+        </button>
+
+        <button onclick="showPage('history')">
+            History
+        </button>
+
+        <button onclick="showPage('settings')">
+            Settings
+        </button>
+
+    </div>
+
+    <div class="status">
+
+        <div class="status-dot"></div>
+
+        <span id="networkStatus">
+            Online
+        </span>
+
+    </div>
+
+</nav>
+
+
+<!-- ================================================= -->
+<!-- HOME -->
+<!-- ================================================= -->
+
+<section id="home" class="page active">
+
+<div class="home">
+
+<div class="hero">
+
+<div>
+
+<h1>
+Safety when
+<span>every second</span>
+matters.
+</h1>
+
+<p>
+Shakti Shield is an offline-first personal safety
+and emergency response platform that connects
+users with trusted contacts and provides
+location-aware emergency assistance.
+</p>
+
+<div class="hero-buttons">
+
+<button
+class="btn btn-danger"
+onclick="startSOS()">
+
+🚨 Emergency SOS
+
+</button>
+
+<button
+class="btn btn-primary"
+onclick="showPage('safety')">
+
+Open Safety App
+
+</button>
+
+</div>
 
 </div>
 
 
+<div class="safety-card">
+
+<h2>
+Emergency Assistance
+</h2>
+
+<button
+class="sos-button"
+onclick="startSOS()">
+
+SOS
+
+<small>
+Press to request help
+</small>
+
+</button>
+
+<p style="margin-top:20px;color:#667085">
+
+Double-press side button simulation
+is available in Safety Controls.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="features">
+
+<h2 class="section-title">
+Core Safety Features
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature">
+
+<div class="feature-icon">📱</div>
+
+<h3>Double-Press SOS</h3>
+
+<p>
+Quick emergency activation using
+a side-button trigger concept.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">📡</div>
+
+<h3>Adaptive Communication</h3>
+
+<p>
+Uses available communication paths
+and demonstrates offline queueing.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">📍</div>
+
+<h3>GPS Tracking</h3>
+
+<p>
+Shares current or last-known
+location with authorized contacts.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">🔋</div>
+
+<h3>Low Battery</h3>
+
+<p>
+Battery-aware emergency tracking
+and communication concept.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">🚓</div>
+
+<h3>Nearby Police</h3>
+
+<p>
+Quick access to nearby police
+stations through map search.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">🔒</div>
+
+<h3>Emergency Lock</h3>
+
+<p>
+Emergency lock mode protected
+by an emergency PIN.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- SAFETY APP -->
+<!-- ================================================= -->
+
+<section id="safety" class="page">
+
+<div class="app-container">
+
+<div class="app-header">
+
+<div>
+
+<h1>Safety Center</h1>
+
+<p style="color:#667085">
+Your emergency control center
+</p>
+
+</div>
+
+<button
+class="btn btn-danger"
+onclick="startSOS()">
+
+SOS
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>Device Status</h2>
+
+<div class="info-grid">
+
+<div class="info-box">
+
+📍 Location
+
+<span id="locationStatus">
+Available
+</span>
+
+</div>
+
+
+<div class="info-box">
+
+📶 Network
+
+<span id="networkBox">
+Online
+</span>
+
+</div>
+
+
+<div class="info-box">
+
+🔋 Battery
+
+<span id="batteryStatus">
+Checking...
+</span>
+
+</div>
+
+
+<div class="info-box">
+
+👥 Contacts
+
+<span>
+3 Trusted
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>Quick Emergency Actions</h2>
+
+<button
+class="btn btn-danger"
+onclick="startSOS()">
+
+🚨 Activate SOS
+
+</button>
+
+<button
+class="btn btn-primary"
+onclick="simulateDoublePress()">
+
+📱 Simulate Double-Press
+
+</button>
+
+<button
+class="btn btn-light"
+onclick="nearbyPolice()">
+
+🚓 Nearby Police Station
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>Emergency Lock</h2>
+
+<p style="color:#667085;margin-bottom:10px">
+
+Emergency mode protects normal interaction
+until the emergency PIN is entered.
+
+</p>
+
+<button
+class="btn btn-primary"
+onclick="unlockPIN()">
+
+🔒 Enter Emergency PIN
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- SOS COUNTDOWN -->
+<!-- ================================================= -->
+
+<section id="sos" class="page">
+
+<div class="sos-page">
+
+<h1>
+Emergency SOS
+</h1>
+
+<p style="color:#667085;margin-top:10px">
+
+Emergency activation will begin shortly.
+
+</p>
+
+
+<div
+class="countdown"
+id="countdown">
+
+5
+
+</div>
+
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="progressBar">
+
+</div>
+
+</div>
+
+
+<div class="card" style="margin-top:30px">
+
+<div class="info-grid">
+
+<div class="info-box">
+📍
+<strong>GPS</strong>
+<span>Available</span>
+</div>
+
+<div class="info-box">
+📶
+<strong>Network</strong>
+<span id="sosNetwork">Online</span>
+</div>
+
+<div class="info-box">
+📩
+<strong>SMS</strong>
+<span>Fallback Ready</span>
+</div>
+
+<div class="info-box">
+👥
+<strong>Contacts</strong>
+<span>3 Trusted</span>
+</div>
+
+</div>
+
+
+<button
+class="btn btn-light"
+style="margin-top:20px"
+onclick="cancelSOS()">
+
+Cancel SOS
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- EMERGENCY ACTIVE -->
+<!-- ================================================= -->
+
+<section id="active" class="page">
+
+<div class="app-container">
+
+<div class="card" style="text-align:center">
+
+<div style="font-size:65px;color:#16865b">
+✓
+</div>
+
+<h1>
+Emergency Session Active
+</h1>
+
+<p style="color:#667085;margin-top:10px">
+
+Your emergency request has been activated.
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>Communication Status</h2>
+
+<div class="setting">
+
+<span>
+Internet Alert
+</span>
+
+<strong style="color:#16865b">
+<span id="internetAlert">
+Sent
+</span>
+</strong>
+
+</div>
+
+
+<div class="setting">
+
+<span>
+SMS Fallback
+</span>
+
+<strong style="color:#16865b">
+Ready
+</strong>
+
+</div>
+
+
+<div class="setting">
+
+<span>
+Location Sharing
+</span>
+
+<strong style="color:#16865b">
+Active
+</strong>
+
+</div>
+
+
+<div class="setting">
+
+<span>
+Battery
+</span>
+
+<strong id="activeBattery">
+Checking
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Current / Last-Known Location
+</h2>
+
+<div class="map">
+
+<div class="map-pin">
+📍
+</div>
+
+</div>
+
+<p
+id="activeLocation"
+style="margin-top:12px;color:#667085">
+
+Location available to authorized contacts.
+
+</p>
+
+
+<button
+class="btn btn-primary"
+onclick="showPage('guardian')">
+
+Open Guardian Dashboard
+
+</button>
+
+
+<button
+class="btn btn-light"
+onclick="nearbyPolice()">
+
+🚓 Nearby Police
+
+</button>
+
+
+<button
+class="btn btn-green"
+onclick="markSafe()">
+
+✓ Mark Me Safe
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- CONTACTS -->
+<!-- ================================================= -->
+
+<section id="contacts" class="page">
+
+<div class="app-container">
+
+<h1>Trusted Contacts</h1>
+
+<p style="color:#667085;margin:8px 0 25px">
+
+Only selected contacts receive emergency information.
+
+</p>
+
+
+<div class="card">
+
+<h2>Add Contact</h2>
+
+<input
+id="contactName"
+placeholder="Name">
+
+<input
+id="contactPhone"
+placeholder="Phone number">
+
+<button
+class="btn btn-primary"
+onclick="addContact()">
+
+Add Trusted Contact
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>Your Contacts</h2>
+
+<div id="contactList">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- GUARDIAN -->
+<!-- ================================================= -->
+
+<section id="guardian" class="page">
+
+<div class="dashboard">
+
+<aside class="sidebar">
+
+<h2>
+Shakti Shield
+</h2>
+
+<button onclick="showPage('guardian')">
+🚨 Emergency Alerts
+</button>
+
+<button onclick="showPage('contacts')">
+👥 Trusted Contacts
+</button>
+
+<button onclick="showPage('history')">
+📜 History
+</button>
+
+</aside>
+
+
+<main class="dashboard-main">
+
+<h1>
+Guardian Dashboard
+</h1>
+
+<p style="color:#667085;margin:8px 0 25px">
+
+Monitor emergency sessions and coordinate response.
+
+</p>
+
+
+<div id="guardianAlert">
+
+<div class="alert-card">
+
+<div class="alert-header">
+
+<h2>
+🚨 Emergency Session
+</h2>
+
+<span class="active-badge">
+ACTIVE
+</span>
+
+</div>
+
+
+<div class="info-grid" style="margin-top:20px">
+
+<div class="info-box">
+
+📍 Location
+
+<span>
+Available
+</span>
+
+</div>
+
+
+<div class="info-box">
+
+📶 Network
+
+<span id="guardianNetwork">
+Online
+</span>
+
+</div>
+
+
+<div class="info-box">
+
+🔋 Battery
+
+<span id="guardianBattery">
+100%
+</span>
+
+</div>
+
+
+<div class="info-box">
+
+⏱ Time
+
+<span id="guardianTime">
+Now
+</span>
+
+</div>
+
+</div>
+
+
+<div class="map">
+
+<div class="map-pin">
+📍
+</div>
+
+</div>
+
+
+<button
+class="btn btn-green"
+onclick="respondToEmergency()">
+
+I'm Responding
+
+</button>
+
+
+<button
+class="btn btn-light"
+onclick="markSafe()">
+
+Mark User Safe
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Response Information
+</h2>
+
+<p style="color:#667085;line-height:1.6">
+
+Use the shared location and emergency
+information to coordinate assistance.
+
+Shakti Shield does not automatically dispatch
+police or emergency services in this prototype.
+
+</p>
+
+</div>
+
+</main>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- HISTORY -->
+<!-- ================================================= -->
+
+<section id="history" class="page">
+
+<div class="app-container">
+
+<h1>
+Emergency History
+</h1>
+
+<p style="color:#667085;margin:8px 0 25px">
+
+Previous emergency sessions.
+
+</p>
+
+
+<div class="card">
+
+<div id="historyList">
+
+<p style="color:#667085">
+No emergency sessions yet.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- SETTINGS -->
+<!-- ================================================= -->
+
+<section id="settings" class="page">
+
+<div class="app-container">
+
+<h1>
+Safety Settings
+</h1>
+
+<p style="color:#667085;margin:8px 0 25px">
+
+Configure emergency behavior.
+
+</p>
+
+
+<div class="card">
+
+
+<div class="setting">
+
+<div>
+
+<strong>
+Double-Press Side Button
+</strong>
+
+<p style="color:#667085;font-size:12px">
+Trigger SOS quickly.
+</p>
+
+</div>
+
+<div class="switch"></div>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+
+<strong>
+Adaptive Communication
+</strong>
+
+<p style="color:#667085;font-size:12px">
+Use available communication channels.
+</p>
+
+</div>
+
+<div class="switch"></div>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+
+<strong>
+Low Battery Mode
+</strong>
+
+<p style="color:#667085;font-size:12px">
+Reduce location updates when battery is low.
+</p>
+
+</div>
+
+<div class="switch"></div>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+
+<strong>
+Low-Noise Alarm
+</strong>
+
+<p style="color:#667085;font-size:12px">
+Emergency alarm without loud audio.
+</p>
+
+</div>
+
+<div class="switch"></div>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+
+<strong>
+Emergency Lock</strong>
+
+<p style="color:#667085;font-size:12px">
+Protect the emergency session.
+</p>
+
+</div>
+
+<div class="switch"></div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>
+Accessibility
+</h2>
+
+<p style="color:#667085;line-height:1.6">
+
+Braille-compatible and accessible emergency
+interaction is planned for the hardware/mobile
+implementation.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="toast" id="toast"></div>
+
+
 <script>
 
-const root = document.getElementById("root");
-const toast = document.getElementById("toast");
+/* =================================================
+   PAGE NAVIGATION
+================================================= */
 
+function showPage(page){
 
-/* =========================
-   NOTIFICATION
-========================= */
+    document.querySelectorAll(".page")
+    .forEach(p => p.classList.remove("active"));
 
-function notify(message) {
+    document.getElementById(page)
+    .classList.add("active");
 
-  toast.textContent = message;
-
-  toast.style.display = "block";
-
-  setTimeout(() => {
-    toast.style.display = "none";
-  }, 2600);
+    window.scrollTo(0,0);
 
 }
 
 
-/* =========================
-   BOTTOM NAVIGATION
-========================= */
+/* =================================================
+   TOAST
+================================================= */
 
-function nav() {
+function toast(message){
 
-  return `
-    <div class="nav">
-      <b>⌂ Home</b>
-      <span>◉ Contacts</span>
-      <span>◫ History</span>
-      <span>⚙ Settings</span>
-    </div>
-  `;
+    const box =
+        document.getElementById("toast");
+
+    box.innerText = message;
+
+    box.style.display = "block";
+
+    setTimeout(() => {
+
+        box.style.display = "none";
+
+    },2500);
 
 }
 
 
-/* =========================
-   HOME SCREEN
-========================= */
-
-function home() {
-
-  root.innerHTML = `
-
-    <div class="screen">
-
-      <div class="top">
-
-        <div>
-
-          <div class="logo">
-            Shakti <span>Shield</span>
-          </div>
-
-          <div class="welcome">
-            Personal safety & emergency response
-          </div>
-
-        </div>
-
-        <div class="avatar">
-          S
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="location">
-
-          <i class="dot"></i>
-
-          <span>
-            <b>Location available</b>
-            <br>
-            Last known location ready to share
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <!-- SOS -->
-
-      <div class="sos-wrap">
-
-        <button
-          class="sos"
-          onclick="startSOS()">
-
-          SOS
-
-          <small>
-            Press to request help
-          </small>
-
-        </button>
-
-      </div>
-
-
-      <div class="hint">
-
-        Your emergency session can use internet,
-        SMS fallback and stored last-known location.
-
-      </div>
-
-
-      <!-- BASIC STATUS -->
-
-      <div class="grid">
-
-        <div class="mini">
-
-          📍
-
-          <b>Location</b>
-
-          <span>
-            Current / last known
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          📶
-
-          <b>Network</b>
-
-          <span>
-            Connected
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          🔋
-
-          <b>Battery</b>
-
-          <span>
-            100% available
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          👥
-
-          <b>Trusted contacts</b>
-
-          <span>
-            3 contacts
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <!-- SAFETY FEATURES -->
-
-      <div class="section-title">
-
-        Safety Features
-
-      </div>
-
-
-      <div class="grid">
-
-
-        <div class="mini">
-
-          📱
-
-          <b>Side Button SOS</b>
-
-          <span>
-            Double-press trigger
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          👥
-
-          <b>Selected Contacts</b>
-
-          <span>
-            Alert trusted people
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          🚓
-
-          <b>Nearby Police</b>
-
-          <span>
-            Quick local contact
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          🛰️
-
-          <b>GPS Tracking</b>
-
-          <span>
-            Current / last-known
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          🔒
-
-          <b>Emergency Lock</b>
-
-          <span>
-            Lock + emergency PIN
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          📡
-
-          <b>Adaptive Communication</b>
-
-          <span>
-            Network-aware delivery
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          🔋
-
-          <b>Low Battery Mode</b>
-
-          <span>
-            Battery-aware sharing
-          </span>
-
-        </div>
-
-
-        <div class="mini">
-
-          🔈
-
-          <b>Low-Noise Alarm</b>
-
-          <span>
-            Emergency alarm
-          </span>
-
-        </div>
-
-      </div>
-
-
-      <!-- ACCESSIBILITY -->
-
-      <div class="card contact">
-
-        <div>
-
-          <b>
-            Accessibility
-          </b>
-
-          <br>
-
-          <span>
-            Braille-support concept for
-            accessible emergency interaction
-          </span>
-
-        </div>
-
-        <span class="badge">
-          Planned
-        </span>
-
-      </div>
-
-
-      <!-- OFFLINE -->
-
-      <div class="card contact">
-
-        <div>
-
-          <b>
-            Offline / No-Network Area
-          </b>
-
-          <br>
-
-          <span>
-            Queue alerts and use available
-            fallback channels
-          </span>
-
-        </div>
-
-        <span class="badge">
-          Ready
-        </span>
-
-      </div>
-
-
-      <!-- SAFETY CONTROLS -->
-
-      <div class="card">
-
-        <b>
-          Quick Safety Controls
-        </b>
-
-        <p style="
-          font-size:12px;
-          color:#667085;
-        ">
-
-          Demo the hardware-style trigger,
-          emergency lock, PIN and low-noise
-          alarm concepts.
-
-        </p>
-
-        <button
-          class="primary"
-          onclick="safetyControls()">
-
-          Open Safety Controls
-
-        </button>
-
-      </div>
-
-
-      <!-- CONTACT -->
-
-      <div class="section-title">
-
-        Trusted Contacts
-
-      </div>
-
-
-      <div class="card contact">
-
-        <div>
-
-          <b>
-            Parent / Guardian
-          </b>
-
-          <br>
-
-          <span>
-            Primary emergency contact
-          </span>
-
-        </div>
-
-        <span class="badge">
-          Ready
-        </span>
-
-      </div>
-
-
-      ${nav()}
-
-    </div>
-
-  `;
+/* =================================================
+   NETWORK
+================================================= */
+
+function updateNetwork(){
+
+    const online = navigator.onLine;
+
+    document.getElementById(
+        "networkStatus"
+    ).innerText =
+        online ? "Online" : "Offline";
+
+    document.getElementById(
+        "networkBox"
+    ).innerText =
+        online ? "Online" : "Offline";
 
 }
 
+window.addEventListener(
+    "online",
+    updateNetwork
+);
 
-/* =========================
-   SAFETY CONTROLS
-========================= */
+window.addEventListener(
+    "offline",
+    updateNetwork
+);
 
-function safetyControls() {
+updateNetwork();
 
-  root.innerHTML = `
 
-    <div class="screen">
+/* =================================================
+   BATTERY
+================================================= */
 
+async function getBattery(){
 
-      <div class="top">
+    if(
+        navigator.getBattery
+    ){
 
-        <button
-          class="back"
-          onclick="home()">
+        try{
 
-          ‹
+            const battery =
+                await navigator.getBattery();
 
-        </button>
+            const value =
+                Math.round(
+                    battery.level * 100
+                ) + "%";
 
-        <div class="screen-title">
+            document.getElementById(
+                "batteryStatus"
+            ).innerText = value;
 
-          Safety Controls
+            document.getElementById(
+                "activeBattery"
+            ).innerText = value;
 
-        </div>
+            document.getElementById(
+                "guardianBattery"
+            ).innerText = value;
 
-      </div>
+        }catch(e){}
 
+    }else{
 
-      <div class="card">
-
-
-        <div class="statusbox">
-
-          <span>
-            Double-press side button
-          </span>
-
-          <b class="ok">
-            Enabled
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Selected contacts
-          </span>
-
-          <b>
-            3 contacts
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Emergency lock mode
-          </span>
-
-          <b class="ok">
-            Ready
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Emergency PIN
-          </span>
-
-          <b>
-            ••••
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Low-noise alarm
-          </span>
-
-          <b class="ok">
-            Available
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Low battery response
-          </span>
-
-          <b class="ok">
-            Adaptive
-          </b>
-
-        </div>
-
-
-        <button
-          class="primary"
-          onclick="simulateSideButton()">
-
-          Simulate Double-Press SOS
-
-        </button>
-
-
-        <button
-          class="secondary"
-          onclick="notify('Low-noise emergency alarm activated')">
-
-          Test Low-Noise Alarm
-
-        </button>
-
-
-      </div>
-
-
-      <div class="card">
-
-        <b>
-          Offline / No-Network Area
-        </b>
-
-        <p style="
-          font-size:13px;
-          color:#667085;
-          line-height:1.5;
-        ">
-
-          If connectivity is unavailable,
-          Shakti Shield represents local queuing,
-          last-known location and fallback
-          communication attempts.
-
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <b>
-          Emergency Lock
-        </b>
-
-        <p style="
-          font-size:13px;
-          color:#667085;
-          line-height:1.5;
-        ">
-
-          Emergency mode can restrict normal
-          interaction until the authorized
-          emergency PIN is entered.
-
-        </p>
-
-
-        <button
-          class="secondary"
-          onclick="unlockDemo()">
-
-          Enter Emergency PIN
-
-        </button>
-
-      </div>
-
-
-      <div class="card">
-
-        <b>
-          Braille Support
-        </b>
-
-        <p style="
-          font-size:13px;
-          color:#667085;
-          line-height:1.5;
-        ">
-
-          Accessibility concept included for
-          tactile/Braille-compatible emergency
-          controls.
-
-        </p>
-
-      </div>
-
-
-    </div>
-
-  `;
-
-}
-
-
-/* =========================
-   DOUBLE PRESS DEMO
-========================= */
-
-function simulateSideButton() {
-
-  notify(
-    "Double-press detected — starting SOS"
-  );
-
-  setTimeout(
-    startSOS,
-    700
-  );
-
-}
-
-
-/* =========================
-   EMERGENCY PIN
-========================= */
-
-function unlockDemo() {
-
-  let pin = prompt(
-    "Prototype PIN: enter 1234"
-  );
-
-  if (pin === "1234") {
-
-    notify(
-      "Emergency lock unlocked"
-    );
-
-  } else {
-
-    notify(
-      "Incorrect PIN"
-    );
-
-  }
-
-}
-
-
-/* =========================
-   SOS COUNTDOWN
-========================= */
-
-function startSOS() {
-
-  let n = 5;
-
-
-  root.innerHTML = `
-
-    <div class="screen">
-
-
-      <div class="top">
-
-        <button
-          class="back"
-          onclick="home()">
-
-          ‹
-
-        </button>
-
-
-        <div class="screen-title">
-
-          Emergency SOS
-
-        </div>
-
-      </div>
-
-
-      <div class="count">
-
-        <div
-          class="count-num"
-          id="counter">
-
-          5
-
-        </div>
-
-
-        <h3>
-          Emergency activation
-        </h3>
-
-
-        <p class="warning">
-
-          Your trusted contacts will be
-          notified with your available
-          location and device status.
-
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-
-        <div class="statusbox">
-
-          <span>
-            Location
-          </span>
-
-          <b class="ok">
-            Available
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Network
-          </span>
-
-          <b class="ok">
-            Connected
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            SMS fallback
-          </span>
-
-          <b class="ok">
-            Ready
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Trusted contacts
-          </span>
-
-          <b>
-            3
-          </b>
-
-        </div>
-
-
-        <button
-          class="secondary"
-          onclick="home()">
-
-          Cancel SOS
-
-        </button>
-
-
-      </div>
-
-
-    </div>
-
-  `;
-
-
-  const timer = setInterval(() => {
-
-    n--;
-
-    let counter =
-      document.getElementById(
-        "counter"
-      );
-
-
-    if (counter) {
-
-      counter.textContent = n;
+        document.getElementById(
+            "batteryStatus"
+        ).innerText = "Available";
 
     }
 
+}
 
-    if (n <= 0) {
+getBattery();
 
-      clearInterval(timer);
 
-      activated();
+/* =================================================
+   GPS
+================================================= */
+
+function getLocation(){
+
+    if(!navigator.geolocation){
+
+        document.getElementById(
+            "locationStatus"
+        ).innerText =
+            "Unavailable";
+
+        return;
 
     }
 
-  }, 1000);
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            const lat =
+                position.coords.latitude
+                .toFixed(5);
+
+            const lon =
+                position.coords.longitude
+                .toFixed(5);
+
+            document.getElementById(
+                "locationStatus"
+            ).innerText =
+                "GPS Available";
+
+            document.getElementById(
+                "activeLocation"
+            ).innerText =
+                "Current location: "
+                + lat + ", " + lon;
+
+        },
+
+        function(){
+
+            document.getElementById(
+                "locationStatus"
+            ).innerText =
+                "Permission needed";
+
+        }
+
+    );
+
+}
+
+getLocation();
+
+
+/* =================================================
+   SOS
+================================================= */
+
+let timer;
+let seconds = 5;
+
+function startSOS(){
+
+    seconds = 5;
+
+    showPage("sos");
+
+    document.getElementById(
+        "countdown"
+    ).innerText = seconds;
+
+    document.getElementById(
+        "progressBar"
+    ).style.width = "100%";
+
+    clearInterval(timer);
+
+    timer = setInterval(function(){
+
+        seconds--;
+
+        document.getElementById(
+            "countdown"
+        ).innerText = seconds;
+
+        document.getElementById(
+            "progressBar"
+        ).style.width =
+            (seconds / 5 * 100) + "%";
+
+        if(seconds <= 0){
+
+            clearInterval(timer);
+
+            activateEmergency();
+
+        }
+
+    },1000);
 
 }
 
 
-/* =========================
-   ACTIVATED SCREEN
-========================= */
+function cancelSOS(){
 
-function activated() {
+    clearInterval(timer);
 
-  root.innerHTML = `
+    toast("SOS cancelled");
 
-    <div class="screen">
-
-
-      <div class="top">
-
-        <div class="logo">
-
-          Shakti <span>Shield</span>
-
-        </div>
-
-
-        <span class="badge">
-
-          ACTIVE
-
-        </span>
-
-      </div>
-
-
-      <div class="success">
-
-
-        <div class="check">
-
-          ✓
-
-        </div>
-
-
-        <h2>
-
-          Emergency session active
-
-        </h2>
-
-
-        <p class="warning">
-
-          Your trusted contacts have
-          been notified. Shakti Shield
-          will keep trying available
-          communication channels.
-
-        </p>
-
-
-      </div>
-
-
-      <div class="card">
-
-
-        <div class="statusbox">
-
-          <span>
-            Internet alert
-          </span>
-
-          <b class="ok">
-            Sent
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Location
-          </span>
-
-          <b class="ok">
-            Shared
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Battery
-          </span>
-
-          <b>
-            100%
-          </b>
-
-        </div>
-
-
-        <div class="statusbox">
-
-          <span>
-            Network
-          </span>
-
-          <b>
-            Connected
-          </b>
-
-        </div>
-
-
-      </div>
-
-
-      <!-- NEARBY POLICE -->
-
-      <div class="card">
-
-
-        <b>
-          Nearby Support
-        </b>
-
-
-        <p style="
-          font-size:12px;
-          color:#667085;
-        ">
-
-          Nearest police-station contact
-          concept is available to the
-          authorized user.
-
-        </p>
-
-
-        <button
-          class="secondary"
-          onclick="notify('Nearby police contact opened')">
-
-          Contact Nearby Police
-
-        </button>
-
-
-      </div>
-
-
-      <!-- LOCATION -->
-
-      <div class="card">
-
-
-        <b>
-          Current location
-        </b>
-
-
-        <div class="map">
-
-          <div class="road"></div>
-
-          <div class="pin">
-            📍
-          </div>
-
-        </div>
-
-
-        <p style="
-          font-size:12px;
-          color:#667085;
-        ">
-
-          Current / last-known location
-          available to authorized contacts.
-
-        </p>
-
-
-        <button
-          class="primary"
-          onclick="guardian()">
-
-          Open Guardian Dashboard
-
-        </button>
-
-
-        <button
-          class="secondary"
-          onclick="markSafe()">
-
-          Mark Me Safe
-
-        </button>
-
-
-      </div>
-
-
-    </div>
-
-  `;
-
-
-  notify(
-    "Emergency alert sent to trusted contacts"
-  );
+    showPage("home");
 
 }
 
 
-/* =========================
-   GUARDIAN DASHBOARD
-========================= */
-
-function guardian() {
-
-  root.innerHTML = `
-
-    <div class="screen dash">
-
-
-      <div class="top">
-
-
-        <button
-          class="back"
-          onclick="activated()">
-
-          ‹
-
-        </button>
-
-
-        <div class="screen-title">
-
-          Guardian Dashboard
-
-        </div>
-
-
-      </div>
-
-
-      <div class="alert">
-
-
-        <div class="alert-head">
-
-          <span>
-            🚨 Emergency Session
-          </span>
-
-
-          <span class="tag">
-            ACTIVE
-          </span>
-
-        </div>
-
-
-        <p style="
-          font-size:13px;
-          color:#667085;
-        ">
-
-          Shakti Shield user requested
-          assistance.
-
-        </p>
-
-
-        <div class="row">
-
-          <span>
-            Location
-          </span>
-
-          <b>
-            Available
-          </b>
-
-        </div>
-
-
-        <div class="row">
-
-          <span>
-            Network
-          </span>
-
-          <b>
-            Connected
-          </b>
-
-        </div>
-
-
-        <div class="row">
-
-          <span>
-            Battery
-          </span>
-
-          <b>
-            100%
-          </b>
-
-        </div>
-
-
-        <div class="row">
-
-          <span>
-            Alert time
-          </span>
-
-          <b>
-            09:41
-          </b>
-
-        </div>
-
-
-        <div class="map">
-
-          <div class="road"></div>
-
-          <div class="pin">
-            📍
-          </div>
-
-        </div>
-
-
-        <button
-          class="response"
-          onclick="respond()">
-
-          I'm responding
-
-        </button>
-
-
-        <button
-          class="safe"
-          onclick="markSafe()">
-
-          Mark user safe
-
-        </button>
-
-
-      </div>
-
-
-      <div class="card">
-
-
-        <b>
-          Response guidance
-        </b>
-
-
-        <p style="
-          font-size:13px;
-          color:#667085;
-          line-height:1.5;
-        ">
-
-          Use the shared location to
-          coordinate assistance.
-
-          This prototype does not
-          automatically dispatch police
-          or emergency services.
-
-        </p>
-
-
-      </div>
-
-
-    </div>
-
-  `;
+/* =================================================
+   ACTIVATE EMERGENCY
+================================================= */
+
+function activateEmergency(){
+
+    localStorage.setItem(
+        "emergencyActive",
+        "true"
+    );
+
+    localStorage.setItem(
+        "emergencyTime",
+        new Date().toLocaleString()
+    );
+
+    document.getElementById(
+        "guardianTime"
+    ).innerText =
+        new Date().toLocaleTimeString();
+
+    addHistory();
+
+    const online =
+        navigator.onLine;
+
+    document.getElementById(
+        "internetAlert"
+    ).innerText =
+        online ? "Sent" : "Queued";
+
+    document.getElementById(
+        "sosNetwork"
+    ).innerText =
+        online ? "Online" : "Offline";
+
+    showPage("active");
+
+    toast(
+        online
+        ? "Emergency alert sent"
+        : "Offline mode: alert queued"
+    );
 
 }
 
 
-/* =========================
+/* =================================================
+   DOUBLE PRESS
+================================================= */
+
+function simulateDoublePress(){
+
+    toast(
+        "Double-press detected"
+    );
+
+    setTimeout(
+        startSOS,
+        700
+    );
+
+}
+
+
+/* =================================================
+   POLICE
+================================================= */
+
+function nearbyPolice(){
+
+    if(
+        navigator.geolocation
+    ){
+
+        navigator.geolocation.getCurrentPosition(
+
+            function(position){
+
+                const lat =
+                    position.coords.latitude;
+
+                const lon =
+                    position.coords.longitude;
+
+                window.open(
+                    "https://www.google.com/maps/search/police+station/@"
+                    + lat + "," + lon + ",14z",
+                    "_blank"
+                );
+
+            },
+
+            function(){
+
+                window.open(
+                    "https://www.google.com/maps/search/police+station",
+                    "_blank"
+                );
+
+            }
+
+        );
+
+    }else{
+
+        window.open(
+            "https://www.google.com/maps/search/police+station",
+            "_blank"
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   PIN
+================================================= */
+
+function unlockPIN(){
+
+    const pin =
+        prompt(
+            "Enter Emergency PIN\nDemo PIN: 1234"
+        );
+
+    if(pin === "1234"){
+
+        toast(
+            "Emergency lock unlocked"
+        );
+
+    }else{
+
+        toast(
+            "Incorrect PIN"
+        );
+
+    }
+
+}
+
+
+/* =================================================
+   CONTACTS
+================================================= */
+
+let contacts = [
+
+    {
+        name:"Parent / Guardian",
+        phone:"+91 98765 43210"
+    },
+
+    {
+        name:"Emergency Contact",
+        phone:"+91 91234 56789"
+    },
+
+    {
+        name:"Trusted Friend",
+        phone:"+91 99887 66554"
+    }
+
+];
+
+
+function renderContacts(){
+
+    const list =
+        document.getElementById(
+            "contactList"
+        );
+
+    list.innerHTML = "";
+
+    contacts.forEach(
+        function(contact,index){
+
+            list.innerHTML += `
+
+            <div class="contact">
+
+                <div>
+
+                    <strong>
+                        ${contact.name}
+                    </strong>
+
+                    <small>
+                        ${contact.phone}
+                    </small>
+
+                </div>
+
+                <button
+                    class="btn btn-light"
+                    onclick="removeContact(${index})">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+function addContact(){
+
+    const name =
+        document.getElementById(
+            "contactName"
+        ).value;
+
+    const phone =
+        document.getElementById(
+            "contactPhone"
+        ).value;
+
+    if(!name || !phone){
+
+        toast(
+            "Enter name and phone number"
+        );
+
+        return;
+
+    }
+
+    contacts.push({
+        name:name,
+        phone:phone
+    });
+
+    document.getElementById(
+        "contactName"
+    ).value = "";
+
+    document.getElementById(
+        "contactPhone"
+    ).value = "";
+
+    renderContacts();
+
+    toast(
+        "Trusted contact added"
+    );
+
+}
+
+
+function removeContact(index){
+
+    contacts.splice(index,1);
+
+    renderContacts();
+
+    toast(
+        "Contact removed"
+    );
+
+}
+
+renderContacts();
+
+
+/* =================================================
    GUARDIAN RESPONSE
-========================= */
+================================================= */
 
-function respond() {
+function respondToEmergency(){
 
-  notify(
-    "Response status shared with the user"
-  );
+    toast(
+        "Guardian response sent to user"
+    );
 
 }
 
 
-/* =========================
+/* =================================================
    MARK SAFE
-========================= */
+================================================= */
 
-function markSafe() {
+function markSafe(){
 
-  root.innerHTML = `
+    localStorage.setItem(
+        "emergencyActive",
+        "false"
+    );
 
-    <div class="screen">
+    toast(
+        "Emergency session closed"
+    );
 
-
-      <div
-        class="success"
-        style="margin-top:90px">
-
-
-        <div class="check">
-
-          ✓
-
-        </div>
-
-
-        <h2>
-
-          Marked Safe
-
-        </h2>
-
-
-        <p class="warning">
-
-          The emergency session has
-          been closed. Trusted contacts
-          can see the updated status.
-
-        </p>
-
-
-        <button
-          class="primary"
-          onclick="home()">
-
-          Return to Home
-
-        </button>
-
-
-      </div>
-
-
-    </div>
-
-  `;
-
-
-  notify(
-    "Emergency session closed"
-  );
+    showPage("home");
 
 }
 
 
-/* =========================
-   START APP
-========================= */
+/* =================================================
+   HISTORY
+================================================= */
 
-home();
+let history = [];
+
+
+function addHistory(){
+
+    history.push({
+
+        time:
+            new Date().toLocaleString(),
+
+        status:
+            "Emergency Activated"
+
+    });
+
+    renderHistory();
+
+}
+
+
+function renderHistory(){
+
+    const list =
+        document.getElementById(
+            "historyList"
+        );
+
+    if(history.length === 0){
+
+        list.innerHTML =
+            `<p style="color:#667085">
+                No emergency sessions yet.
+            </p>`;
+
+        return;
+
+    }
+
+    list.innerHTML = "";
+
+    history.forEach(
+        function(item){
+
+            list.innerHTML += `
+
+            <div class="contact">
+
+                <div>
+
+                    <strong>
+                        🚨 Emergency Session
+                    </strong>
+
+                    <small>
+                        ${item.time}
+                    </small>
+
+                </div>
+
+                <span
+                    style="color:#d7193f;font-weight:bold">
+
+                    ${item.status}
+
+                </span>
+
+            </div>
+
+            `;
+
+        }
+    );
+
+}
+
+renderHistory();
 
 </script>
 
