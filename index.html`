@@ -1,0 +1,2644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Shakti Shield | Personal Safety & Emergency Response</title>
+
+  <meta
+    name="description"
+    content="Shakti Shield is an offline-first personal safety and emergency response platform."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "system-ui", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    }
+
+    ::selection {
+      background: #fee2e2;
+      color: #0f172a;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .phone-shadow {
+      box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.18),
+        0 10px 30px rgba(15, 23, 42, 0.1);
+    }
+
+    .soft-shadow {
+      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.07);
+    }
+
+    .sos-pulse {
+      animation: sosPulse 1.5s infinite;
+    }
+
+    @keyframes sosPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.35);
+      }
+
+      50% {
+        box-shadow: 0 0 0 18px rgba(220, 38, 38, 0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.7s ease-out both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+
+<body class="bg-[#f7f9fc] text-slate-900">
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header
+  class="fixed left-0 right-0 top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-xl"
+>
+
+  <div
+    class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
+  >
+
+    <!-- Logo -->
+
+    <a href="#home" class="flex items-center gap-3">
+
+      <div
+        class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-white"
+      >
+        🛡
+      </div>
+
+      <div>
+        <div class="text-lg font-bold tracking-tight">
+          Shakti Shield
+        </div>
+
+        <div
+          class="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500"
+        >
+          Personal Safety
+        </div>
+      </div>
+
+    </a>
+
+
+    <!-- Desktop Navigation -->
+
+    <nav class="hidden items-center gap-8 md:flex">
+
+      <a
+        href="#problem"
+        class="text-sm text-slate-600 transition hover:text-slate-950"
+      >
+        Problem
+      </a>
+
+      <a
+        href="#solution"
+        class="text-sm text-slate-600 transition hover:text-slate-950"
+      >
+        Solution
+      </a>
+
+      <a
+        href="#features"
+        class="text-sm text-slate-600 transition hover:text-slate-950"
+      >
+        Features
+      </a>
+
+      <a
+        href="#dashboard"
+        class="text-sm text-slate-600 transition hover:text-slate-950"
+      >
+        Dashboard
+      </a>
+
+      <a
+        href="#roadmap"
+        class="text-sm text-slate-600 transition hover:text-slate-950"
+      >
+        Roadmap
+      </a>
+
+    </nav>
+
+
+    <a
+      href="#demo"
+      class="hidden rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 md:block"
+    >
+      Explore Demo
+    </a>
+
+
+    <!-- Mobile Button -->
+
+    <button
+      id="menuButton"
+      class="text-2xl md:hidden"
+      onclick="toggleMenu()"
+      aria-label="Open menu"
+    >
+      ☰
+    </button>
+
+  </div>
+
+
+  <!-- Mobile Menu -->
+
+  <div
+    id="mobileMenu"
+    class="hidden border-t border-slate-200 bg-white px-6 py-5 md:hidden"
+  >
+
+    <div class="flex flex-col gap-5">
+
+      <a href="#problem" onclick="closeMenu()">Problem</a>
+      <a href="#solution" onclick="closeMenu()">Solution</a>
+      <a href="#features" onclick="closeMenu()">Features</a>
+      <a href="#dashboard" onclick="closeMenu()">Dashboard</a>
+      <a href="#roadmap" onclick="closeMenu()">Roadmap</a>
+      <a href="#demo" onclick="closeMenu()">Demo</a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section
+  id="home"
+  class="grid-bg relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-28"
+>
+
+  <div
+    class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_80%_20%,rgba(220,38,38,0.08),transparent_30%),radial-gradient(circle_at_20%_40%,rgba(15,23,42,0.06),transparent_30%)]"
+  ></div>
+
+
+  <div
+    class="mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2"
+  >
+
+    <!-- Hero Text -->
+
+    <div class="fade-up">
+
+      <div
+        class="mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-600 shadow-sm"
+      >
+
+        <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+
+        OFFLINE-FIRST SAFETY PLATFORM
+
+      </div>
+
+
+      <h1
+        class="max-w-3xl text-5xl font-bold leading-[1.02] tracking-tight text-slate-950 sm:text-6xl lg:text-7xl"
+      >
+
+        When every second matters,
+
+        <span class="block text-red-600">
+          stay connected.
+        </span>
+
+      </h1>
+
+
+      <p
+        class="mt-7 max-w-xl text-lg leading-8 text-slate-600"
+      >
+        Shakti Shield helps people request emergency assistance quickly
+        and discreetly, even in low-connectivity situations, by combining
+        SOS activation, adaptive communication, location sharing and
+        trusted-response coordination.
+      </p>
+
+
+      <div class="mt-9 flex flex-wrap gap-4">
+
+        <a
+          href="#demo"
+          class="group inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+        >
+          Try Emergency Demo
+          <span class="transition group-hover:translate-x-1">→</span>
+        </a>
+
+
+        <a
+          href="#how-it-works"
+          class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400"
+        >
+          See How It Works
+        </a>
+
+      </div>
+
+
+      <div class="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500">
+
+        <span class="flex items-center gap-2">
+          ✓ Current / last-known location
+        </span>
+
+        <span class="flex items-center gap-2">
+          ✓ Internet + SMS fallback
+        </span>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Phone Mockup -->
+
+    <div class="flex justify-center lg:justify-end">
+
+      <div class="relative">
+
+
+        <!-- Floating Network Card -->
+
+        <div
+          class="absolute -left-16 top-20 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-xl sm:block"
+        >
+
+          <div class="flex items-center gap-3">
+
+            <div
+              class="rounded-xl bg-emerald-50 p-2 text-emerald-600"
+            >
+              📶
+            </div>
+
+            <div>
+              <div class="text-xs text-slate-500">
+                Network
+              </div>
+
+              <div class="text-sm font-semibold">
+                Connected
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Floating Location Card -->
+
+        <div
+          class="absolute -right-16 bottom-24 hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-xl sm:block"
+        >
+
+          <div class="flex items-center gap-3">
+
+            <div
+              class="rounded-xl bg-red-50 p-2 text-red-600"
+            >
+              📍
+            </div>
+
+            <div>
+              <div class="text-xs text-slate-500">
+                Location
+              </div>
+
+              <div class="text-sm font-semibold">
+                Available
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Phone -->
+
+        <div
+          class="w-[290px] rounded-[40px] border-[8px] border-slate-900 bg-slate-950 p-2 phone-shadow sm:w-[320px]"
+        >
+
+          <div class="overflow-hidden rounded-[30px] bg-white">
+
+
+            <!-- Phone Status Bar -->
+
+            <div
+              class="flex items-center justify-between bg-slate-950 px-5 py-3 text-xs text-white"
+            >
+              <span>9:41</span>
+              <span>● ● ●</span>
+            </div>
+
+
+            <div class="px-5 pb-8 pt-7">
+
+
+              <div class="mb-7 flex items-center justify-between">
+
+                <div>
+
+                  <p class="text-xs text-slate-500">
+                    Good evening
+                  </p>
+
+                  <h3 class="text-xl font-bold">
+                    Stay protected.
+                  </h3>
+
+                </div>
+
+                <div
+                  class="rounded-full bg-slate-100 p-2"
+                >
+                  🛡
+                </div>
+
+              </div>
+
+
+              <!-- SOS Area -->
+
+              <div
+                class="rounded-3xl bg-slate-50 p-4"
+              >
+
+                <div
+                  class="mb-3 text-center text-xs font-medium uppercase tracking-wider text-slate-400"
+                >
+                  Emergency Assistance
+                </div>
+
+
+                <button
+                  id="phoneSOS"
+                  onclick="triggerSOS()"
+                  class="sos-pulse mx-auto flex h-40 w-40 items-center justify-center rounded-full border-[12px] border-red-100 bg-red-600 text-white transition hover:scale-105"
+                >
+
+                  <div>
+
+                    <div class="mb-1 text-3xl">
+                      🛡
+                    </div>
+
+                    <div
+                      id="sosText"
+                      class="text-lg font-bold"
+                    >
+                      SOS
+                    </div>
+
+                    <div
+                      id="sosSubText"
+                      class="text-[10px] uppercase tracking-widest"
+                    >
+                      Emergency
+                    </div>
+
+                  </div>
+
+                </button>
+
+
+                <button
+                  id="cancelButton"
+                  onclick="cancelSOS()"
+                  class="mt-4 hidden w-full rounded-xl border border-slate-200 bg-white py-2 text-xs font-semibold"
+                >
+                  Cancel Alert
+                </button>
+
+              </div>
+
+
+              <!-- Phone Information -->
+
+              <div class="mt-5 grid grid-cols-2 gap-3">
+
+                <div
+                  class="rounded-2xl border border-slate-100 p-3"
+                >
+
+                  <div class="mb-2 text-lg">
+                    📍
+                  </div>
+
+                  <div class="text-[10px] text-slate-400">
+                    LOCATION
+                  </div>
+
+                  <div class="text-xs font-semibold">
+                    Available
+                  </div>
+
+                </div>
+
+
+                <div
+                  class="rounded-2xl border border-slate-100 p-3"
+                >
+
+                  <div class="mb-2 text-lg">
+                    🔋
+                  </div>
+
+                  <div class="text-[10px] text-slate-400">
+                    BATTERY
+                  </div>
+
+                  <div class="text-xs font-semibold">
+                    82%
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROBLEM
+========================================================= -->
+
+<section
+  id="problem"
+  class="border-y border-slate-200 bg-white py-24"
+>
+
+  <div class="mx-auto max-w-7xl px-6">
+
+    <div class="max-w-2xl">
+
+      <div
+        class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+      >
+        The Problem
+      </div>
+
+      <h2
+        class="text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        Emergencies don't wait for perfect connectivity.
+      </h2>
+
+      <p
+        class="mt-5 text-lg leading-8 text-slate-600"
+      >
+        During an emergency, people may have limited internet,
+        unreliable GPS, low battery or very little time to communicate.
+        A safety platform needs to account for these real-world
+        limitations.
+      </p>
+
+    </div>
+
+
+    <div class="mt-14 grid gap-5 md:grid-cols-3">
+
+
+      <div
+        class="rounded-3xl border border-slate-200 bg-[#f8fafc] p-7 transition hover:-translate-y-1 hover:shadow-lg"
+      >
+
+        <div
+          class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl shadow-sm"
+        >
+          📡
+        </div>
+
+        <h3 class="text-xl font-bold">
+          Connectivity Gaps
+        </h3>
+
+        <p class="mt-3 leading-7 text-slate-600">
+          Internet-dependent communication may become unreliable
+          when network availability is limited.
+        </p>
+
+      </div>
+
+
+      <div
+        class="rounded-3xl border border-slate-200 bg-[#f8fafc] p-7 transition hover:-translate-y-1 hover:shadow-lg"
+      >
+
+        <div
+          class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl shadow-sm"
+        >
+          ⏱
+        </div>
+
+        <h3 class="text-xl font-bold">
+          Every Second Matters
+        </h3>
+
+        <p class="mt-3 leading-7 text-slate-600">
+          Users need a quick and discreet way to request assistance
+          without navigating through multiple screens.
+        </p>
+
+      </div>
+
+
+      <div
+        class="rounded-3xl border border-slate-200 bg-[#f8fafc] p-7 transition hover:-translate-y-1 hover:shadow-lg"
+      >
+
+        <div
+          class="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl shadow-sm"
+        >
+          👁
+        </div>
+
+        <h3 class="text-xl font-bold">
+          Unclear Response
+        </h3>
+
+        <p class="mt-3 leading-7 text-slate-600">
+          Guardians need clear information about location,
+          battery, delivery and emergency status.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SOLUTION
+========================================================= -->
+
+<section
+  id="solution"
+  class="py-24"
+>
+
+  <div
+    class="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-2 lg:items-center"
+  >
+
+
+    <div>
+
+      <div
+        class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+      >
+        Our Solution
+      </div>
+
+      <h2
+        class="text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        One safety layer. Multiple ways to stay connected.
+      </h2>
+
+      <p
+        class="mt-6 text-lg leading-8 text-slate-600"
+      >
+        Shakti Shield combines emergency activation, location sharing,
+        adaptive communication and trusted-response coordination into
+        one safety platform.
+      </p>
+
+
+      <div class="mt-8 space-y-4">
+
+        <div class="flex items-start gap-3">
+          <span class="text-emerald-600">✓</span>
+          <span>Activate emergency assistance quickly.</span>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-emerald-600">✓</span>
+          <span>Capture current or last-known location.</span>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-emerald-600">✓</span>
+          <span>Try internet communication first.</span>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-emerald-600">✓</span>
+          <span>Use SMS fallback or local queue when required.</span>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <span class="text-emerald-600">✓</span>
+          <span>Give guardians clear response information.</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Emergency Status Card -->
+
+    <div
+      class="rounded-[32px] bg-slate-950 p-7 text-white shadow-xl"
+    >
+
+      <div class="mb-7 flex items-center justify-between">
+
+        <div>
+
+          <div
+            class="text-xs uppercase tracking-[0.2em] text-slate-400"
+          >
+            Emergency Session
+          </div>
+
+          <div class="mt-1 text-xl font-bold">
+            Active Response
+          </div>
+
+        </div>
+
+        <div
+          class="rounded-full bg-red-500/10 px-3 py-1.5 text-xs font-semibold text-red-400"
+        >
+          ACTIVE
+        </div>
+
+      </div>
+
+
+      <div class="space-y-3">
+
+
+        <div
+          class="flex items-center justify-between rounded-2xl bg-white/5 p-4"
+        >
+
+          <span>📍 &nbsp; Location</span>
+
+          <span class="text-sm text-emerald-400">
+            Available
+          </span>
+
+        </div>
+
+
+        <div
+          class="flex items-center justify-between rounded-2xl bg-white/5 p-4"
+        >
+
+          <span>🔋 &nbsp; Battery</span>
+
+          <span class="text-sm">
+            82%
+          </span>
+
+        </div>
+
+
+        <div
+          class="flex items-center justify-between rounded-2xl bg-white/5 p-4"
+        >
+
+          <span>📶 &nbsp; Communication</span>
+
+          <span class="text-sm text-emerald-400">
+            Internet
+          </span>
+
+        </div>
+
+
+        <div
+          class="flex items-center justify-between rounded-2xl bg-white/5 p-4"
+        >
+
+          <span>👥 &nbsp; Guardians</span>
+
+          <span class="text-sm">
+            2 notified
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="mt-5 rounded-2xl border border-red-500/20 bg-red-500/10 p-4"
+      >
+
+        <div class="flex items-center gap-3">
+
+          <span class="text-xl">
+            ⚠
+          </span>
+
+          <div>
+
+            <div class="text-sm font-semibold">
+              Emergency response in progress
+            </div>
+
+            <div class="mt-1 text-xs text-slate-400">
+              Guardian dashboard is receiving updates.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section
+  id="how-it-works"
+  class="border-y border-slate-200 bg-white py-24"
+>
+
+  <div class="mx-auto max-w-7xl px-6">
+
+
+    <div class="text-center">
+
+      <div
+        class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+      >
+        How It Works
+      </div>
+
+      <h2
+        class="text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        From SOS to trusted response.
+      </h2>
+
+      <p
+        class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600"
+      >
+        A simple emergency flow designed around speed,
+        communication reliability and clear response.
+      </p>
+
+    </div>
+
+
+    <div class="mt-16 grid gap-8 md:grid-cols-4">
+
+
+      <!-- Step 1 -->
+
+      <div>
+
+        <div class="mb-5 flex items-center justify-between">
+
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-xl text-white"
+          >
+            ⚡
+          </div>
+
+          <span class="text-sm font-bold text-slate-300">
+            01
+          </span>
+
+        </div>
+
+        <h3 class="text-xl font-bold">
+          Trigger SOS
+        </h3>
+
+        <p class="mt-3 leading-7 text-slate-600">
+          The user activates emergency assistance and receives
+          a short cancellation window.
+        </p>
+
+      </div>
+
+
+      <!-- Step 2 -->
+
+      <div>
+
+        <div class="mb-5 flex items-center justify-between">
+
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-xl text-white"
+          >
+            📍
+          </div>
+
+          <span class="text-sm font-bold text-slate-300">
+            02
+          </span>
+
+        </div>
+
+        <h3 class="text-xl font-bold">
+          Capture Context
+        </h3>
+
+        <p class="mt-3 leading-7 text-slate-600">
+          Location, battery, network and emergency information
+          are captured.
+        </p>
+
+      </div>
+
+
+      <!-- Step 3 -->
+
+      <div>
+
+        <div class="mb-5 flex items-center justify-between">
+
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-xl text-white"
+          >
+            📡
+          </div>
+
+          <span class="text-sm font-bold text-slate-300">
+            03
+          </span>
+
+        </div>
+
+        <h3 class="text-xl font-bold">
+          Adapt Communication
+        </h3>
+
+        <p class="mt-3 leading-7 text-slate-600">
+          The system attempts internet delivery and can use
+          SMS fallback or local queue.
+        </p>
+
+      </div>
+
+
+      <!-- Step 4 -->
+
+      <div>
+
+        <div class="mb-5 flex items-center justify-between">
+
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-xl text-white"
+          >
+            👤
+          </div>
+
+          <span class="text-sm font-bold text-slate-300">
+            04
+          </span>
+
+        </div>
+
+        <h3 class="text-xl font-bold">
+          Trusted Response
+        </h3>
+
+        <p class="mt-3 leading-7 text-slate-600">
+          Guardians receive the alert, view status and can
+          respond or mark the incident resolved.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ADAPTIVE COMMUNICATION
+========================================================= -->
+
+<section class="py-24">
+
+  <div class="mx-auto max-w-7xl px-6">
+
+
+    <div class="mx-auto max-w-3xl text-center">
+
+      <div
+        class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+      >
+        Adaptive Communication
+      </div>
+
+      <h2
+        class="text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        Don't depend on one network.
+      </h2>
+
+      <p
+        class="mt-5 text-lg leading-8 text-slate-600"
+      >
+        Shakti Shield is designed to keep trying available
+        communication paths when connectivity conditions change.
+      </p>
+
+    </div>
+
+
+    <!-- Communication Flow -->
+
+    <div class="mx-auto mt-14 max-w-5xl">
+
+
+      <div class="grid gap-4 md:grid-cols-5">
+
+
+        <div
+          class="rounded-2xl border border-red-200 bg-red-50 p-5 text-center"
+        >
+
+          <div
+            class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-red-600 text-white"
+          >
+            ⚡
+          </div>
+
+          <div class="text-sm font-bold">
+            SOS
+          </div>
+
+        </div>
+
+
+        <div class="hidden items-center justify-center md:flex">
+          <span class="text-2xl text-slate-300">
+            →
+          </span>
+        </div>
+
+
+        <div
+          class="rounded-2xl border border-slate-200 bg-white p-5 text-center"
+        >
+
+          <div
+            class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100"
+          >
+            📶
+          </div>
+
+          <div class="text-sm font-bold">
+            Internet
+          </div>
+
+        </div>
+
+
+        <div class="hidden items-center justify-center md:flex">
+          <span class="text-2xl text-slate-300">
+            →
+          </span>
+        </div>
+
+
+        <div
+          class="rounded-2xl border border-slate-200 bg-white p-5 text-center"
+        >
+
+          <div
+            class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100"
+          >
+            💬
+          </div>
+
+          <div class="text-sm font-bold">
+            SMS / Queue
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="my-8 flex justify-center">
+        <div class="h-12 w-px bg-slate-300"></div>
+      </div>
+
+
+      <div class="grid gap-5 md:grid-cols-2">
+
+
+        <div
+          class="rounded-3xl border border-slate-200 bg-white p-7 soft-shadow"
+        >
+
+          <div
+            class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-xl"
+          >
+            📶
+          </div>
+
+          <h3 class="text-xl font-bold">
+            When internet is available
+          </h3>
+
+          <p class="mt-3 leading-7 text-slate-600">
+            The alert is sent to the backend and trusted guardians
+            can receive emergency information through the notification
+            workflow.
+          </p>
+
+        </div>
+
+
+        <div
+          class="rounded-3xl border border-slate-200 bg-white p-7 soft-shadow"
+        >
+
+          <div
+            class="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-xl"
+          >
+            📵
+          </div>
+
+          <h3 class="text-xl font-bold">
+            When internet is unavailable
+          </h3>
+
+          <p class="mt-3 leading-7 text-slate-600">
+            The system can prepare an SMS fallback or queue the
+            alert locally for retry when communication becomes available.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
+
+<section
+  id="features"
+  class="border-y border-slate-200 bg-white py-24"
+>
+
+  <div class="mx-auto max-w-7xl px-6">
+
+
+    <div class="max-w-2xl">
+
+      <div
+        class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+      >
+        Core Features
+      </div>
+
+      <h2
+        class="text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        Built around the moments that matter.
+      </h2>
+
+      <p
+        class="mt-5 text-lg leading-8 text-slate-600"
+      >
+        Every feature is designed to make emergency activation,
+        communication and response simpler.
+      </p>
+
+    </div>
+
+
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+
+      <!-- Feature -->
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Quick SOS</h3>
+        <p class="feature-text">
+          Trigger an emergency alert quickly from the home screen
+          with a simple, accessible interface.
+        </p>
+      </div>
+
+
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3 class="feature-title">Location Sharing</h3>
+        <p class="feature-text">
+          Share current or last-known location with authorized
+          trusted contacts.
+        </p>
+      </div>
+
+
+      <div class="feature-card">
+        <div class="feature-icon">📡</div>
+        <h3 class="feature-title">Offline SMS Fallback</h3>
+        <p class="feature-text">
+          When internet connectivity is unavailable, the system
+          can use SMS fallback or queue the alert.
+        </p>
+      </div>
+
+
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3 class="feature-title">Trusted Contacts</h3>
+        <p class="feature-text">
+          Choose parents, friends, family members or other trusted
+          people to receive alerts.
+        </p>
+      </div>
+
+
+      <div class="feature-card">
+        <div class="feature-icon">🔋</div>
+        <h3 class="feature-title">Battery Awareness</h3>
+        <p class="feature-text">
+          Monitor battery status and reduce tracking frequency
+          when battery becomes low.
+        </p>
+      </div>
+
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3 class="feature-title">Emergency Lock</h3>
+        <p class="feature-text">
+          Keep the emergency session active until the user confirms
+          that they are safe.
+        </p>
+      </div>
+
+
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3 class="feature-title">Delivery Status</h3>
+        <p class="feature-text">
+          Provide visibility into alert delivery and response status.
+        </p>
+      </div>
+
+
+      <div class="feature-card">
+        <div class="feature-icon">🗺</div>
+        <h3 class="feature-title">Nearby Support</h3>
+        <p class="feature-text">
+          Help identify nearby approved support points such as
+          hospitals, police stations and campus security.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- Feature Styling -->
+
+<style>
+
+  .feature-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    background: #f8fafc;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    background: white;
+    box-shadow: 0 15px 35px rgba(15,23,42,0.08);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: white;
+    margin-bottom: 22px;
+    font-size: 21px;
+  }
+
+  .feature-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .feature-text {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #475569;
+  }
+
+</style>
+
+
+
+<!-- =========================================================
+     GUARDIAN DASHBOARD
+========================================================= -->
+
+<section
+  id="dashboard"
+  class="py-24"
+>
+
+  <div
+    class="mx-auto max-w-7xl px-6"
+  >
+
+    <div
+      class="grid gap-14 lg:grid-cols-2 lg:items-center"
+    >
+
+
+      <div>
+
+        <div
+          class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+        >
+          Guardian Dashboard
+        </div>
+
+        <h2
+          class="text-4xl font-bold tracking-tight sm:text-5xl"
+        >
+          Give trusted responders the information they need.
+        </h2>
+
+        <p
+          class="mt-6 text-lg leading-8 text-slate-600"
+        >
+          Guardians can view active alerts, location information,
+          battery status, delivery status and response controls
+          from one dashboard.
+        </p>
+
+
+        <div class="mt-8 space-y-4">
+
+          <div>✓ View emergency alerts</div>
+          <div>✓ See latest location</div>
+          <div>✓ Check battery and network status</div>
+          <div>✓ Call or respond</div>
+          <div>✓ Update emergency response status</div>
+          <div>✓ Mark incident resolved</div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Dashboard Mockup -->
+
+      <div
+        class="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-2xl"
+      >
+
+        <!-- Dashboard Header -->
+
+        <div
+          class="flex items-center justify-between border-b border-slate-200 px-5 py-4"
+        >
+
+          <div class="flex items-center gap-3">
+
+            <div class="text-xl">
+              🛡
+            </div>
+
+            <span class="font-bold">
+              Shakti Shield
+            </span>
+
+          </div>
+
+          <div class="text-xs text-slate-500">
+            Guardian Dashboard
+          </div>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-[1fr_1.2fr]">
+
+
+          <!-- Alert Panel -->
+
+          <div
+            class="border-r border-slate-200 bg-slate-50 p-5"
+          >
+
+            <div class="mb-5 flex items-center justify-between">
+
+              <div>
+
+                <div class="text-xs text-slate-500">
+                  Active Alerts
+                </div>
+
+                <div class="text-2xl font-bold">
+                  01
+                </div>
+
+              </div>
+
+              <div
+                class="rounded-xl bg-red-50 p-2 text-red-600"
+              >
+                🔔
+              </div>
+
+            </div>
+
+
+            <div
+              class="rounded-2xl border border-red-200 bg-white p-4 shadow-sm"
+            >
+
+              <div class="flex items-start justify-between">
+
+                <div>
+
+                  <div class="text-sm font-bold">
+                    Emergency Alert
+                  </div>
+
+                  <div class="mt-1 text-xs text-slate-500">
+                    Student • 2 min ago
+                  </div>
+
+                </div>
+
+                <span
+                  class="rounded-full bg-red-50 px-2 py-1 text-[10px] font-bold text-red-600"
+                >
+                  ACTIVE
+                </span>
+
+              </div>
+
+
+              <div class="mt-5 space-y-3">
+
+                <div class="flex justify-between text-xs">
+
+                  <span class="text-slate-500">
+                    Battery
+                  </span>
+
+                  <span class="font-semibold">
+                    82%
+                  </span>
+
+                </div>
+
+
+                <div class="flex justify-between text-xs">
+
+                  <span class="text-slate-500">
+                    Location
+                  </span>
+
+                  <span class="font-semibold text-emerald-600">
+                    Current
+                  </span>
+
+                </div>
+
+
+                <div class="flex justify-between text-xs">
+
+                  <span class="text-slate-500">
+                    Delivery
+                  </span>
+
+                  <span class="font-semibold text-emerald-600">
+                    Delivered
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="mt-5 flex gap-2">
+
+                <button
+                  onclick="showResponse()"
+                  class="flex-1 rounded-xl bg-slate-950 py-2 text-xs font-semibold text-white"
+                >
+                  Respond
+                </button>
+
+                <button
+                  class="rounded-xl border border-slate-200 px-3"
+                >
+                  ☎
+                </button>
+
+              </div>
+
+              <div
+                id="responseMessage"
+                class="mt-3 hidden rounded-xl bg-emerald-50 p-2 text-center text-xs font-semibold text-emerald-700"
+              >
+                Response recorded.
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Fake Map -->
+
+          <div
+            class="relative min-h-[360px] overflow-hidden bg-[#e9eef2]"
+          >
+
+            <!-- Map grid -->
+
+            <div class="absolute inset-0 opacity-60">
+
+              <div
+                class="absolute left-0 top-16 h-px w-full bg-white"
+              ></div>
+
+              <div
+                class="absolute left-0 top-32 h-px w-full bg-white"
+              ></div>
+
+              <div
+                class="absolute left-0 top-48 h-px w-full bg-white"
+              ></div>
+
+              <div
+                class="absolute left-16 top-0 h-full w-px bg-white"
+              ></div>
+
+              <div
+                class="absolute left-36 top-0 h-full w-px bg-white"
+              ></div>
+
+              <div
+                class="absolute left-56 top-0 h-full w-px bg-white"
+              ></div>
+
+              <div
+                class="absolute left-80 top-0 h-full w-px bg-white"
+              ></div>
+
+            </div>
+
+
+            <!-- Location -->
+
+            <div
+              class="absolute left-[48%] top-[45%] flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-red-600 text-white shadow-lg"
+            >
+              📍
+            </div>
+
+
+            <div
+              class="absolute bottom-5 left-5 rounded-xl bg-white/95 px-4 py-3 shadow-lg"
+            >
+
+              <div
+                class="text-[10px] uppercase tracking-wider text-slate-400"
+              >
+                Latest Location
+              </div>
+
+              <div class="mt-1 text-sm font-bold">
+                Location available
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     TARGET USERS
+========================================================= -->
+
+<section
+  class="border-y border-slate-200 bg-white py-24"
+>
+
+  <div class="mx-auto max-w-7xl px-6">
+
+
+    <div class="text-center">
+
+      <div
+        class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+      >
+        Built For People
+      </div>
+
+      <h2
+        class="text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        Safety should be accessible to everyone.
+      </h2>
+
+      <p
+        class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600"
+      >
+        Shakti Shield is designed for people who may need trusted
+        emergency assistance while travelling or working independently.
+      </p>
+
+    </div>
+
+
+    <div
+      class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+    >
+
+
+      <div class="user-card">
+        <div class="user-icon">🎓</div>
+        <div>
+          <h3 class="font-bold">College & Hostel Students</h3>
+          <p>For students travelling between campus, hostel and home.</p>
+        </div>
+      </div>
+
+
+      <div class="user-card">
+        <div class="user-icon">🧭</div>
+        <div>
+          <h3 class="font-bold">Solo Travellers</h3>
+          <p>For people travelling alone who want trusted emergency coordination.</p>
+        </div>
+      </div>
+
+
+      <div class="user-card">
+        <div class="user-icon">🌙</div>
+        <div>
+          <h3 class="font-bold">Night-Shift Workers</h3>
+          <p>For people travelling during late or low-traffic hours.</p>
+        </div>
+      </div>
+
+
+      <div class="user-card">
+        <div class="user-icon">🤝</div>
+        <div>
+          <h3 class="font-bold">Elderly & Independent Children</h3>
+          <p>For people who may need trusted-contact assistance.</p>
+        </div>
+      </div>
+
+
+      <div class="user-card">
+        <div class="user-icon">👨‍👩‍👧</div>
+        <div>
+          <h3 class="font-bold">Parents & Guardians</h3>
+          <p>For trusted contacts who need clear emergency information.</p>
+        </div>
+      </div>
+
+
+      <div class="user-card">
+        <div class="user-icon">🏢</div>
+        <div>
+          <h3 class="font-bold">Institutions</h3>
+          <p>For wardens, security teams and administrators.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<style>
+
+  .user-card {
+    display: flex;
+    gap: 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .user-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(15,23,42,0.06);
+  }
+
+  .user-card p {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #64748b;
+  }
+
+  .user-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    border-radius: 16px;
+    font-size: 20px;
+  }
+
+</style>
+
+
+
+<!-- =========================================================
+     PRIVACY
+========================================================= -->
+
+<section class="py-24">
+
+  <div class="mx-auto max-w-7xl px-6">
+
+    <div
+      class="rounded-[36px] bg-slate-950 px-7 py-14 text-white sm:px-12 lg:px-16"
+    >
+
+      <div
+        class="grid gap-14 lg:grid-cols-2 lg:items-center"
+      >
+
+
+        <div>
+
+          <div
+            class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-400"
+          >
+            Privacy & Security
+          </div>
+
+          <h2
+            class="text-4xl font-bold tracking-tight sm:text-5xl"
+          >
+            Your location belongs to you.
+          </h2>
+
+          <p
+            class="mt-6 max-w-xl text-lg leading-8 text-slate-300"
+          >
+            Shakti Shield is designed around authorized sharing,
+            authentication and controlled access to sensitive
+            emergency information.
+          </p>
+
+        </div>
+
+
+        <div class="grid gap-4 sm:grid-cols-2">
+
+
+          <div class="privacy-card">
+            <div class="privacy-icon">🔒</div>
+            <h3>Authorized Access</h3>
+            <p>
+              Location is shared only with authorized contacts.
+            </p>
+          </div>
+
+
+          <div class="privacy-card">
+            <div class="privacy-icon">🛡</div>
+            <h3>Secure Authentication</h3>
+            <p>
+              Use authentication and role-based access.
+            </p>
+          </div>
+
+
+          <div class="privacy-card">
+            <div class="privacy-icon">👁</div>
+            <h3>No Public Location</h3>
+            <p>
+              Live location is not publicly displayed.
+            </p>
+          </div>
+
+
+          <div class="privacy-card">
+            <div class="privacy-icon">📊</div>
+            <h3>Audit Logs</h3>
+            <p>
+              Sensitive actions can be tracked through audit logs.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<style>
+
+  .privacy-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    border-radius: 24px;
+    padding: 24px;
+  }
+
+  .privacy-icon {
+    font-size: 21px;
+    margin-bottom: 18px;
+  }
+
+  .privacy-card h3 {
+    font-weight: 700;
+  }
+
+  .privacy-card p {
+    margin-top: 8px;
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+</style>
+
+
+
+<!-- =========================================================
+     PERFORMANCE
+========================================================= -->
+
+<section
+  class="border-y border-slate-200 bg-white py-24"
+>
+
+  <div class="mx-auto max-w-7xl px-6">
+
+    <div class="text-center">
+
+      <div
+        class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+      >
+        Designed For Speed
+      </div>
+
+      <h2
+        class="text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        Measurable emergency performance.
+      </h2>
+
+    </div>
+
+
+    <div
+      class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+    >
+
+
+      <div class="metric-card">
+        <div class="metric-value">&lt; 1 sec</div>
+        <div class="metric-label">
+          SOS activation begins
+        </div>
+      </div>
+
+
+      <div class="metric-card">
+        <div class="metric-value">&lt; 5 sec</div>
+        <div class="metric-label">
+          First alert attempt
+        </div>
+      </div>
+
+
+      <div class="metric-card">
+        <div class="metric-value">&lt; 10 sec</div>
+        <div class="metric-label">
+          Active dashboard refresh
+        </div>
+      </div>
+
+
+      <div class="metric-card">
+        <div class="metric-value">90%+</div>
+        <div class="metric-label">
+          Test alerts with location
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<style>
+
+  .metric-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 28px;
+    text-align: center;
+  }
+
+  .metric-value {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+  }
+
+  .metric-label {
+    margin-top: 10px;
+    color: #64748b;
+    font-size: 14px;
+  }
+
+</style>
+
+
+
+<!-- =========================================================
+     ROADMAP
+========================================================= -->
+
+<section
+  id="roadmap"
+  class="py-24"
+>
+
+  <div class="mx-auto max-w-7xl px-6">
+
+
+    <div class="max-w-2xl">
+
+      <div
+        class="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+      >
+        Future Roadmap
+      </div>
+
+      <h2
+        class="text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        From emergency app to safety ecosystem.
+      </h2>
+
+      <p
+        class="mt-5 text-lg leading-8 text-slate-600"
+      >
+        The platform can grow from an individual safety tool
+        into a connected ecosystem for institutions and verified responders.
+      </p>
+
+    </div>
+
+
+    <div class="mt-14 grid gap-5 lg:grid-cols-3">
+
+
+      <!-- Phase 1 -->
+
+      <div class="roadmap-card">
+
+        <div class="roadmap-phase">
+          PHASE 01
+        </div>
+
+        <h3 class="roadmap-title">
+          Core Safety
+        </h3>
+
+        <div class="roadmap-list">
+
+          <div>✓ Android app</div>
+          <div>✓ In-app SOS</div>
+          <div>✓ Trusted contacts</div>
+          <div>✓ GPS location</div>
+          <div>✓ SMS fallback</div>
+          <div>✓ Guardian dashboard</div>
+          <div>✓ Mark-safe workflow</div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Phase 2 -->
+
+      <div class="roadmap-card">
+
+        <div class="roadmap-phase">
+          PHASE 02
+        </div>
+
+        <h3 class="roadmap-title">
+          Smarter Protection
+        </h3>
+
+        <div class="roadmap-list">
+
+          <div>✓ Hardware shortcuts</div>
+          <div>✓ Check-in workflows</div>
+          <div>✓ Institution dashboard</div>
+          <div>✓ Hindi / Marathi</div>
+          <div>✓ Improved offline queue</div>
+          <div>✓ Battery-aware tracking</div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Phase 3 -->
+
+      <div class="roadmap-card">
+
+        <div class="roadmap-phase">
+          PHASE 03
+        </div>
+
+        <h3 class="roadmap-title">
+          Safety Ecosystem
+        </h3>
+
+        <div class="roadmap-list">
+
+          <div>✓ Verified responders</div>
+          <div>✓ Wearable integration</div>
+          <div>✓ Optional evidence capture</div>
+          <div>✓ Official emergency integration</div>
+          <div>✓ Compliance</div>
+          <div>✓ Large-scale deployment</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<style>
+
+  .roadmap-card {
+    border: 1px solid #e2e8f0;
+    background: white;
+    border-radius: 24px;
+    padding: 28px;
+    transition: all 0.3s ease;
+  }
+
+  .roadmap-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(15,23,42,0.07);
+  }
+
+  .roadmap-phase {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #dc2626;
+  }
+
+  .roadmap-title {
+    margin-top: 12px;
+    font-size: 24px;
+    font-weight: 800;
+  }
+
+  .roadmap-list {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 14px;
+    color: #64748b;
+  }
+
+</style>
+
+
+
+<!-- =========================================================
+     DEMO
+========================================================= -->
+
+<section
+  id="demo"
+  class="border-y border-slate-200 bg-slate-950 py-24 text-white"
+>
+
+  <div class="mx-auto max-w-5xl px-6 text-center">
+
+
+    <div
+      class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-600 text-2xl"
+    >
+      🛡
+    </div>
+
+
+    <h2
+      class="text-4xl font-bold tracking-tight sm:text-5xl"
+    >
+      Experience the emergency flow.
+    </h2>
+
+
+    <p
+      class="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-400"
+    >
+      This interactive demo shows how the SOS cancellation
+      window begins before an emergency session is activated.
+    </p>
+
+
+    <!-- Demo -->
+
+    <div
+      class="mx-auto mt-12 max-w-sm rounded-[32px] border border-white/10 bg-white/5 p-7"
+    >
+
+
+      <button
+        id="demoSOS"
+        onclick="triggerDemoSOS()"
+        class="mx-auto flex h-48 w-48 items-center justify-center rounded-full border-[14px] border-red-500/20 bg-red-600 shadow-[0_0_80px_rgba(220,38,38,0.25)] transition hover:scale-105"
+      >
+
+        <div>
+
+          <div class="mb-2 text-4xl">
+            🛡
+          </div>
+
+          <div
+            id="demoText"
+            class="text-2xl font-bold"
+          >
+            SOS
+          </div>
+
+          <div
+            id="demoSubText"
+            class="mt-1 text-xs uppercase tracking-widest text-red-100"
+          >
+            Emergency
+          </div>
+
+        </div>
+
+      </button>
+
+
+      <p
+        id="demoMessage"
+        class="mt-7 text-sm text-slate-400"
+      >
+        Press to start the demo.
+      </p>
+
+
+      <button
+        id="demoCancel"
+        onclick="cancelDemo()"
+        class="mt-4 hidden w-full rounded-xl bg-white py-3 text-sm font-bold text-slate-950 transition hover:bg-slate-100"
+      >
+        Cancel Demo
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section
+  class="bg-white py-28"
+>
+
+  <div class="mx-auto max-w-4xl px-6 text-center">
+
+
+    <div
+      class="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-red-600"
+    >
+      Shakti Shield
+    </div>
+
+
+    <h2
+      class="text-4xl font-bold tracking-tight sm:text-6xl"
+    >
+
+      When every second matters,
+
+      <span class="block text-red-600">
+        Shakti Shield keeps trying.
+      </span>
+
+    </h2>
+
+
+    <p
+      class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600"
+    >
+      A privacy-conscious, offline-first emergency-response
+      platform designed to connect people with trusted responders
+      when they need help.
+    </p>
+
+
+    <div class="mt-9 flex justify-center">
+
+      <a
+        href="#home"
+        class="inline-flex items-center gap-2 rounded-full bg-slate-950 px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+      >
+        Back to Top
+        ↑
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer
+  class="border-t border-slate-200 bg-[#f8fafc]"
+>
+
+  <div class="mx-auto max-w-7xl px-6 py-12">
+
+
+    <div class="grid gap-10 md:grid-cols-4">
+
+
+      <div class="md:col-span-2">
+
+        <div class="flex items-center gap-3">
+
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-950 text-white"
+          >
+            🛡
+          </div>
+
+          <div>
+
+            <div class="font-bold">
+              Shakti Shield
+            </div>
+
+            <div class="text-xs text-slate-500">
+              Personal Safety & Emergency Response
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="mt-5 max-w-md text-sm leading-6 text-slate-500"
+        >
+          An offline-first emergency-response platform combining
+          SOS activation, location sharing, adaptive communication
+          and trusted-response coordination.
+        </p>
+
+      </div>
+
+
+      <div>
+
+        <h3 class="font-semibold">
+          Product
+        </h3>
+
+        <div class="mt-4 space-y-3 text-sm text-slate-500">
+
+          <a
+            class="block hover:text-slate-950"
+            href="#solution"
+          >
+            Solution
+          </a>
+
+          <a
+            class="block hover:text-slate-950"
+            href="#features"
+          >
+            Features
+          </a>
+
+          <a
+            class="block hover:text-slate-950"
+            href="#dashboard"
+          >
+            Guardian Dashboard
+          </a>
+
+          <a
+            class="block hover:text-slate-950"
+            href="#roadmap"
+          >
+            Roadmap
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h3 class="font-semibold">
+          Focus
+        </h3>
+
+        <div
+          class="mt-4 space-y-3 text-sm text-slate-500"
+        >
+
+          <div>Personal Safety</div>
+          <div>Offline Communication</div>
+          <div>Location Sharing</div>
+          <div>Trusted Response</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="mt-12 flex flex-col justify-between gap-4 border-t border-slate-200 pt-7 text-xs text-slate-500 sm:flex-row"
+    >
+
+      <span>
+        © 2026 Shakti Shield. Prototype / Hackathon Project.
+      </span>
+
+      <span>
+        Privacy-conscious • Offline-first • Response-focused
+      </span>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+  /* ===============================
+     MOBILE MENU
+  =============================== */
+
+  function toggleMenu() {
+
+    const menu = document.getElementById("mobileMenu");
+
+    menu.classList.toggle("hidden");
+
+  }
+
+
+  function closeMenu() {
+
+    document
+      .getElementById("mobileMenu")
+      .classList.add("hidden");
+
+  }
+
+
+
+  /* ===============================
+     PHONE SOS DEMO
+  =============================== */
+
+  let phoneTimer;
+  let phoneCount = 5;
+
+
+  function triggerSOS() {
+
+    const button = document.getElementById("phoneSOS");
+    const text = document.getElementById("sosText");
+    const subText = document.getElementById("sosSubText");
+    const cancel = document.getElementById("cancelButton");
+
+
+    phoneCount = 5;
+
+    text.innerText = phoneCount;
+    subText.innerText = "Seconds";
+
+    cancel.classList.remove("hidden");
+
+    button.classList.add("sos-pulse");
+
+
+    clearInterval(phoneTimer);
+
+
+    phoneTimer = setInterval(function () {
+
+      phoneCount--;
+
+      text.innerText = phoneCount;
+
+
+      if (phoneCount <= 0) {
+
+        clearInterval(phoneTimer);
+
+        text.innerText = "SOS";
+        subText.innerText = "Active";
+
+      }
+
+    }, 1000);
+
+  }
+
+
+  function cancelSOS() {
+
+    clearInterval(phoneTimer);
+
+    const text = document.getElementById("sosText");
+    const subText = document.getElementById("sosSubText");
+    const cancel = document.getElementById("cancelButton");
+
+    text.innerText = "SOS";
+    subText.innerText = "Emergency";
+
+    cancel.classList.add("hidden");
+
+  }
+
+
+
+  /* ===============================
+     DEMO SOS
+  =============================== */
+
+  let demoTimer;
+  let demoCount = 5;
+
+
+  function triggerDemoSOS() {
+
+    const button = document.getElementById("demoSOS");
+    const text = document.getElementById("demoText");
+    const subText = document.getElementById("demoSubText");
+    const message = document.getElementById("demoMessage");
+    const cancel = document.getElementById("demoCancel");
+
+
+    demoCount = 5;
+
+    text.innerText = demoCount;
+    subText.innerText = "Cancel Window";
+
+    message.innerText =
+      "Emergency session is preparing.";
+
+    cancel.classList.remove("hidden");
+
+    clearInterval(demoTimer);
+
+
+    demoTimer = setInterval(function () {
+
+      demoCount--;
+
+      text.innerText = demoCount;
+
+
+      if (demoCount <= 0) {
+
+        clearInterval(demoTimer);
+
+        text.innerText = "ACTIVE";
+        subText.innerText = "Response";
+
+        message.innerText =
+          "Emergency response flow activated.";
+
+      }
+
+    }, 1000);
+
+  }
+
+
+  function cancelDemo() {
+
+    clearInterval(demoTimer);
+
+    const text = document.getElementById("demoText");
+    const subText = document.getElementById("demoSubText");
+    const message = document.getElementById("demoMessage");
+    const cancel = document.getElementById("demoCancel");
+
+
+    text.innerText = "SOS";
+    subText.innerText = "Emergency";
+
+    message.innerText =
+      "Demo cancelled. Press to start again.";
+
+    cancel.classList.add("hidden");
+
+  }
+
+
+
+  /* ===============================
+     DASHBOARD RESPONSE
+  =============================== */
+
+  function showResponse() {
+
+    const message =
+      document.getElementById("responseMessage");
+
+    message.classList.remove("hidden");
+
+  }
+
+</script>
+
+</body>
+</html>
